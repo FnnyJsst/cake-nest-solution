@@ -1,10 +1,16 @@
 import styled from "styled-components"
 import { theme } from "../../theme"
 import PrimaryButton from "./PrimaryButton"
+import { FiX } from 'react-icons/fi';
+import OrderContext from "../../context/OrderContext";
+import { useContext } from "react";
 
 export default function Card({ title, imageSource, leftDescription }) {
+  const { isModeAdmin } = useContext(OrderContext);
+
   return (
     <CardStyled className="produit">
+      {isModeAdmin && <FiX className="delete-button" />}
       <div className="image">
         <img src={imageSource} alt={title} />
       </div>
@@ -31,6 +37,18 @@ const CardStyled = styled.div`
   padding-bottom: 10px;
   box-shadow: -8px 8px 20px 0px rgb(0 0 0 / 20%);
   border-radius: ${theme.borderRadius.extraRound};
+  position: relative;
+
+  .delete-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: none;
+  }
+
+  &:hover .delete-button {
+    display: block;
+  }
 
   .image {
     width: 100%;
