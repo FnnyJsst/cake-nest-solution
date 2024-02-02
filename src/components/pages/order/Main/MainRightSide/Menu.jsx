@@ -4,9 +4,10 @@ import { fakeMenu2 } from "../../../../../fakeData/fakeMenu"
 import { theme } from "../../../../../theme"
 import { formatPrice } from "../../../../../utils/maths"
 import Card from "../../../../reusable-ui/Card"
+import { useMenu } from "../../../../../context/MenuContext"
 
 export default function Menu() {
-  const [menu, setMenu] = useState(fakeMenu2)
+  const { menu } = useMenu();
 
   return (
     <MenuStyled className="menu">

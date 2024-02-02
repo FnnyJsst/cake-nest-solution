@@ -5,9 +5,11 @@ import { FaCamera } from "react-icons/fa";
 import { MdEuro } from "react-icons/md";
 import { useState } from "react";
 import { replaceFrenchCommaWithDot } from "../../../../../../utils/maths";
+import { useMenu } from "../../../../../../context/MenuContext";
 
 
-export default function AdminForm({ setMenu }) {
+export default function AdminForm() {
+    const { setMenu } = useMenu();
     const [selectedImage, setSelectedImage] = useState(null);
     const [productName, setProductName] = useState("");
     const [productPrice, setProductPrice] = useState("");
@@ -31,7 +33,7 @@ export default function AdminForm({ setMenu }) {
     const handlePriceChange = (e) => {
         const price = e.target.value;
         if (!price) {
-            console.log("Price is empty");
+            setProductPrice("0.00");
         }
         const priceDot = replaceFrenchCommaWithDot(price)
         setProductPrice(priceDot);
@@ -40,7 +42,7 @@ export default function AdminForm({ setMenu }) {
     const handleSubmit = (e) => {
         e.preventDefault();
         const newProduct = {
-            id: Math.random(), // Générer un ID unique pour le nouveau produit
+            id: Math.random(), 
             title: productName,
             imageSource: selectedImage,
             price: productPrice
@@ -50,7 +52,7 @@ export default function AdminForm({ setMenu }) {
     return (
        
         <AdminFormStyled>
-         {selectedImage ? <img src={selectedImage} alt="Selected" /> : <img src="../../../../../../../public/images/cupcake-item.png" alt="cupcake" />}
+         {selectedImage ? <img src={selectedImage} alt="Selected" /> : <img src="/public/images/cupcake-item.png" alt="cupcake" />}
             <form onSubmit={handleSubmit}>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                     <GiCupcake className="icon" />
