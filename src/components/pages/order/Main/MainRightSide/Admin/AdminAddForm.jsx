@@ -18,7 +18,7 @@ export default function AdminForm() {
 
     const displayToastNotification = () => {
         toast.info("Ajouté avec succès !", {
-            theme: "dark",
+            theme: "light",
             position: "bottom-right",
             autoClose: 5000,
             hideProgressBar: false,
@@ -26,6 +26,7 @@ export default function AdminForm() {
             pauseOnHover: true,
             draggable: true,
             progress: undefined,
+            type: "success" 
           })
     }
 
@@ -75,7 +76,7 @@ export default function AdminForm() {
     return (
        
         <AdminFormStyled>
-         {selectedImage ? <img src={selectedImage} /> : <img src="/images/cupcake-item.png" alt="cupcake" />}
+         {selectedImage ? <img src={selectedImage} /> : <div className="emptyImage" ><p>Aucune image</p></div>}
             <form onSubmit={handleFormSubmit}>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
                     <GiCupcake className="icon" />
@@ -104,7 +105,10 @@ export default function AdminForm() {
                         value={productPrice} 
                         onChange={handlePriceChange} />
                 </div>
-                <button type="submit">Ajouter un nouveau produit</button>
+                <button 
+                    type="submit"
+                    cursor="pointer"
+                    >Ajouter un nouveau produit</button>
             </form>
         </AdminFormStyled>
     )
@@ -122,6 +126,21 @@ const AdminFormStyled = styled.div`
 
     img {
         height: 17vh;
+    }
+
+    .emptyImage {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid #EBEDEF;
+        height: 12vh;
+        width: 20vh;
+        margin: 20px;
+    }
+
+    p {
+        font-size: ${theme.fonts.size.XS};
+        color: ${theme.colors.greyLight};
     }
     
     input {
@@ -149,4 +168,10 @@ const AdminFormStyled = styled.div`
         height: 5vh;
         width: 30vh;
         border-radius: 5px;
+    }
+    
+    button:active {
+        background-color: white;
+        border: 1px solid ${theme.colors.success};
+        color: ${theme.colors.success};
     }`
