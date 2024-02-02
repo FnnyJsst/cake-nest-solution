@@ -4,7 +4,6 @@ import { MdModeEditOutline } from "react-icons/md"
 export const tabsConfig = [
   {
     index: "add",
-    label: "Ajouter un produit",
     Icon: <AiOutlinePlus />,
   },
   {

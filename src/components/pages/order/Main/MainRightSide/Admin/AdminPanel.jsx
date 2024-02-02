@@ -3,6 +3,8 @@ import styled from "styled-components"
 import OrderContext from "../../../../../../context/OrderContext"
 import { theme } from "../../../../../../theme"
 import { getTabSelected, tabsConfig } from "./tabsConfig"
+import AdminAddForm from "./AdminAddForm"
+import AdminUpdateForm from "./AdminUpdateForm"
 
 export default function AdminPanel() {
   const { currentTabSelected } = useContext(OrderContext)
@@ -12,7 +14,8 @@ export default function AdminPanel() {
 
   return (
     <AdminPanelStyled>
-      <p>{tabSelected && tabSelected.label}</p>
+      {tabSelected.index === "add" && <AdminAddForm />}
+      {tabSelected.index === "edit" && <AdminUpdateForm />}
     </AdminPanelStyled>
   )
 }
