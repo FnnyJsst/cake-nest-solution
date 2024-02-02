@@ -57,6 +57,9 @@ export default function AdminForm() {
     const handleFormSubmit = (e) => {
         handleSubmit(e);
         displayToastNotification();
+        setSelectedImage("");
+        setProductName("");
+        setProductPrice("");
     }
 
     const handleSubmit = (e) => {
