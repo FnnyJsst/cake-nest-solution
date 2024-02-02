@@ -44,6 +44,11 @@ const CardStyled = styled.div`
     top: 10px;
     right: 10px;
     display: none;
+    color: white; 
+    background-color: ${theme.colors.primary}; 
+    border-radius: 50%; 
+    padding: 5px; 
+    font-size: 20px;
   }
 
   &:hover .delete-button {
